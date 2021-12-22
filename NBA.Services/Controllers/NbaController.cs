@@ -16,6 +16,8 @@ namespace NBA.Services.Controllers
     [RoutePrefix("api")]
     public class NbaController : ApiController
     {
+        // BASIC API CALLS 
+
         [Route("Players")]
         [HttpGet]
         public Players GetPlayers(int year)
@@ -102,6 +104,8 @@ namespace NBA.Services.Controllers
             }
         }
 
+        // INTEGRATIONS OF DATA FROM DIFFERENT APIs
+
         [Route("Players/Profile/All")]
         [HttpGet]
         public List<Player> GetPlayersWithProfiles(int year)
@@ -116,6 +120,7 @@ namespace NBA.Services.Controllers
                 {
                     Player player = new Player();
                     player.PersonId = item.PersonId;
+                    player.TeamId = item.TeamId;
                     player.FirstName = item.FirstName;
                     player.LastName = item.LastName;
                     player.TemporaryDisplayName = item.TemporaryDisplayName;
@@ -154,5 +159,84 @@ namespace NBA.Services.Controllers
                 throw ex;
             }
         }
+
+        [Route("Teams/Config/All")]
+        [HttpGet]
+        public List<Models.Team> GetTeamsWithConfig(int year)
+        {
+            try
+            {
+                List<Models.Team> teamList = new List<Models.Team>();
+
+                Teams teams = GetTeams(year);
+
+                TeamsConfig teamsConfig = GetTeamsConfig(year);
+                teamsConfig.Teams.Config = teamsConfig.Teams.Config.OrderBy(x => x.TeamId).ToList();
+
+                foreach (NBA.Models.Africa item in teams.League.Africa)
+                {
+                    Models.Team team = new Models.Team();
+                    team.TeamId = item.TeamId;
+                    team.Config = new Models.Config();
+
+                    // There ARE teams without an entry in the config
+                    if (teamsConfig.Teams.Config.Where(w => w.TeamId == item.TeamId).Count() > 0) 
+                    {
+                        team.Config.PrimaryColor = teamsConfig.Teams.Config
+                                                    .Where(w => w.TeamId == item.TeamId)
+                                                    .Select(s => s.PrimaryColor)
+                                                    .ToString();
+                    }
+                    else
+                    {
+                        team.Config.PrimaryColor = "#000000";
+                    }                    
+
+                    teamList.Add(team);
+                }
+
+                return teamList;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        [Route("Players/Profiles/Teams/Config/All")]
+        [HttpGet]
+        public List<Player> GetPlayersProfileTeamsConfig(int year)
+        {
+            try
+            {
+                List<Player> playersWithProfiles = GetPlayersWithProfiles(year);
+                List<Models.Team> teamsWithConfig = GetTeamsWithConfig(year);
+
+                foreach (Player item in playersWithProfiles)
+                {
+                    item.Team = new Models.Team();
+                    item.Team.TeamId = item.TeamId;
+                    item.Team.Config = new Models.Config();
+
+                    string PrimaryColor = "";
+
+                    foreach (var team in from Models.Team team in teamsWithConfig
+                                         where item.TeamId == team.TeamId
+                                         select team)
+                    {
+                        PrimaryColor = team.Config.PrimaryColor;
+                    }
+
+                    item.Team.Config.PrimaryColor = PrimaryColor;
+                }
+
+                return playersWithProfiles;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
     }
 }

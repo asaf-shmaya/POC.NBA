@@ -12,6 +12,8 @@ namespace NBA.Services.Models
     {
         [JsonProperty("personId")]
         public long PersonId { get; set; }
+        [JsonProperty("teamId")]
+        public string TeamId { get; set; }
 
         [JsonProperty("firstName")]
         public string FirstName { get; set; }

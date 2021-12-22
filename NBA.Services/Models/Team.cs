@@ -19,8 +19,8 @@ namespace NBA.Services.Models
 
     public partial class Africa
     {
-        [JsonProperty("fullName")]
-        public string FullName { get; set; }
+        [JsonProperty("nickname")]
+        public string Nickname { get; set; }
         [JsonProperty("confName")]
         //public ConfName ConfName { get; set; }
         public string ConfName { get; set; }
