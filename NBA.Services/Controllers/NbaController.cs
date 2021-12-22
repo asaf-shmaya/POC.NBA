@@ -146,10 +146,10 @@ namespace NBA.Services.Controllers
 
                 playerList = playerList
                     .OrderByDescending(x => x.CareerSummary.Fgp)
-                    .ThenByDescending(x => x.CareerSummary.Ppg)
-                    .ThenByDescending(x => x.CareerSummary.Rpg)
-                    .ThenByDescending(x => x.CareerSummary.Apg)
-                    .ThenByDescending(x => x.CareerSummary.Bpg)
+                    .ThenByDescending (x => x.CareerSummary.Ppg)
+                    .ThenByDescending (x => x.CareerSummary.Rpg)
+                    .ThenByDescending (x => x.CareerSummary.Apg)
+                    .ThenByDescending (x => x.CareerSummary.Bpg)
                     .ToList();
 
                 return playerList;
@@ -230,7 +230,7 @@ namespace NBA.Services.Controllers
                     item.Team.Config.PrimaryColor = PrimaryColor;
                 }
 
-                return playersWithProfiles;
+                return playersWithProfiles.Take(10).ToList();
             }
             catch (Exception ex)
             {
