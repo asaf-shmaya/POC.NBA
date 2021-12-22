@@ -39,7 +39,7 @@ namespace NBA.Services.Controllers
 
         [Route("Players/Profile")]
         [HttpGet]
-        public NBA.Models.Alt.Profile GetPlayersProfile(int year, int playerId)
+        public NBA.Models.Alt.Profile GetPlayersProfile(int year, long playerId)
         {
             try
             {
@@ -95,6 +95,59 @@ namespace NBA.Services.Controllers
                 TeamsConfig teamsConfig = TeamsConfig.FromJson(queryResult.Content);
 
                 return teamsConfig;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        [Route("Players/Profile/All")]
+        [HttpGet]
+        public List<Player> GetPlayersWithProfiles(int year)
+        {
+            try
+            {
+                List<Player> playerList = new List<Player>();
+
+                Players players = GetPlayers(year);
+
+                foreach (NBA.Models.Africa item in players.League.Africa)
+                {
+                    Player player = new Player();
+                    player.PersonId = item.PersonId;
+                    player.FirstName = item.FirstName;
+                    player.LastName = item.LastName;
+                    player.TemporaryDisplayName = item.TemporaryDisplayName;
+                    player.HeightMeters = item.HeightMeters.ToString();
+                    player.TeamSitesOnly = new NBA.Services.Models.TeamSitesOnly();                    
+                    if (item.TeamSitesOnly != null) {player.TeamSitesOnly.PosFull = item.TeamSitesOnly.PosFull.ToString();}
+                    player.Africa = new Models.Africa();
+                    player.Africa.Country = item.Country;
+                    playerList.Add(player);
+                }
+
+                foreach (Player item in playerList)
+                {
+                    NBA.Models.Alt.Profile profile = GetPlayersProfile(year, item.PersonId);
+
+                    item.CareerSummary = new Models.CareerSummary();
+                    item.CareerSummary.Fgp = profile.League.Standard.Stats.CareerSummary.Fgp;
+                    item.CareerSummary.Ppg = profile.League.Standard.Stats.CareerSummary.Ppg;
+                    item.CareerSummary.Rpg = profile.League.Standard.Stats.CareerSummary.Rpg;
+                    item.CareerSummary.Apg = profile.League.Standard.Stats.CareerSummary.Apg;
+                    item.CareerSummary.Bpg = profile.League.Standard.Stats.CareerSummary.Bpg;                 
+                }
+
+                playerList = playerList
+                    .OrderByDescending(x => x.CareerSummary.Fgp)
+                    .ThenByDescending(x => x.CareerSummary.Ppg)
+                    .ThenByDescending(x => x.CareerSummary.Rpg)
+                    .ThenByDescending(x => x.CareerSummary.Apg)
+                    .ThenByDescending(x => x.CareerSummary.Bpg)
+                    .ToList();
+
+                return playerList;
             }
             catch (Exception ex)
             {

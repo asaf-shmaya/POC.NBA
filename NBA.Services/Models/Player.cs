@@ -23,12 +23,12 @@ namespace NBA.Services.Models
         public string TemporaryDisplayName { get; set; }
 
         [JsonProperty("heightMeters")]
-        public HeightMeters HeightMeters { get; set; }
+        public string HeightMeters { get; set; }
 
-        [JsonProperty("careerSummary")]
+        [JsonProperty("careerSummary")] // From profile
         public CareerSummary CareerSummary { get; set; }
 
-        [JsonProperty("teamSitesOnly", NullValueHandling = NullValueHandling.Ignore)]
+        [JsonProperty("teamSitesOnly", NullValueHandling = NullValueHandling.Ignore)] // From teams
         public TeamSitesOnly TeamSitesOnly { get; set; }
         
         [JsonProperty("team")]
@@ -59,7 +59,7 @@ namespace NBA.Services.Models
     public class TeamSitesOnly
     {
         [JsonProperty("posFull")]
-        public PosFull PosFull { get; set; }
+        public string PosFull { get; set; }
     }
 
 

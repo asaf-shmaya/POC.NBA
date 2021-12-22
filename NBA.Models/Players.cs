@@ -76,7 +76,7 @@ namespace NBA.Models
         public HeightFeetUnion HeightInches { get; set; }
 
         [JsonProperty("heightMeters")]
-        public HeightMeters HeightMeters { get; set; }
+        public string HeightMeters { get; set; }
 
         [JsonProperty("weightPounds")]
         public string WeightPounds { get; set; }

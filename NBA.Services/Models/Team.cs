@@ -10,7 +10,7 @@ namespace NBA.Services.Models
     public class Team
     {
         [JsonProperty("teamId")]
-        public long TeamId { get; set; }
+        public string TeamId { get; set; }
         [JsonProperty("africa")]
         public Africa Africa { get; set; }
         [JsonProperty("config")]
@@ -24,6 +24,8 @@ namespace NBA.Services.Models
         [JsonProperty("confName")]
         //public ConfName ConfName { get; set; }
         public string ConfName { get; set; }
+        [JsonProperty("country")]
+        public string Country { get; set; }
     }
 
     public class Config
