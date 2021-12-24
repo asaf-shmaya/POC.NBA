@@ -66,17 +66,25 @@ body {
   left: 47px;
   overflow: hidden;
 }
+#year.v5_114 {
+    height: auto;
+    top: 0px;
+    background-color: transparent;
+    border-top-color: transparent;
+    border-right-color: transparent;
+    border-left-color: transparent;
+}
 .v5_115 {
-  width: 35px;
-  color: rgba(25,25,25,1);
-  position: absolute;
-  top: 1px;
-  left: 0px;
-  font-family: Rubik;
-  font-weight: Regular;
-  font-size: 16px;
-  opacity: 1;
-  text-align: left;
+    width: 35px;
+    color: rgba(25,25,25,1);
+    position: absolute;
+    top: 1px;
+    left: 0px;
+    font-family: Rubik;
+    font-weight: Regular;
+    font-size: 16px;
+    opacity: 1;
+    text-align: left;
 }
 .v5_116 {
   width: 64px;
