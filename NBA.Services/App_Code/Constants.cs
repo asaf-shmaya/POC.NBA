@@ -15,7 +15,7 @@ namespace NBA.Services
             public const string Teams_Config = "https://data.nba.net/data/1h/prod/{0}/teams_config.json";
         }
 
-        public const string Origins = "https://localhost:44301/";
+        public const string Origins = "https://localhost:44301";
     }
         
 }
