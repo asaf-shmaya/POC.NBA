@@ -27,6 +27,9 @@ namespace NBA.Services.Models
         [JsonProperty("heightMeters")]
         public string HeightMeters { get; set; }
 
+        [JsonProperty("dateOfBirthUTC")]
+        public string DateOfBirthUtc { get; set; }
+
         [JsonProperty("careerSummary")] // From profile
         public CareerSummary CareerSummary { get; set; }
 

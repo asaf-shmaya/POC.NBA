@@ -125,9 +125,13 @@ namespace NBA.Services.Controllers
                     player.LastName = item.LastName;
                     player.TemporaryDisplayName = item.TemporaryDisplayName;
                     player.HeightMeters = item.HeightMeters.ToString();
+                    DateTime DT = DateTime.ParseExact(item.DateOfBirthUtc, "yyyy-mm-dd", new System.Globalization.CultureInfo("en-US"));
+                    player.DateOfBirthUtc = DT.ToString("dd/mm/yyyy");
                     player.TeamSitesOnly = new NBA.Services.Models.TeamSitesOnly();                    
                     if (item.TeamSitesOnly != null) {player.TeamSitesOnly.PosFull = item.TeamSitesOnly.PosFull.ToString();}
                     player.Africa = new Models.Africa();
+                    player.Africa.Nickname = item.Nickname;
+                    player.Africa.ConfName = item.ConfName;
                     player.Africa.Country = item.Country;
                     playerList.Add(player);
                 }
@@ -177,6 +181,8 @@ namespace NBA.Services.Controllers
                 {
                     Models.Team team = new Models.Team();
                     team.TeamId = item.TeamId;
+                    team.Nickname = item.Nickname;
+                    team.ConfName = item.ConfName;
                     team.Config = new Models.Config();
 
                     // There ARE teams without an entry in the config
@@ -218,16 +224,16 @@ namespace NBA.Services.Controllers
                     item.Team.TeamId = item.TeamId;
                     item.Team.Config = new Models.Config();
 
-                    string PrimaryColor = "";
+                    //string PrimaryColor, Nickname , ConfName = "";
 
                     foreach (var team in from Models.Team team in teamsWithConfig
                                          where item.TeamId == team.TeamId
                                          select team)
                     {
-                        PrimaryColor = team.Config.PrimaryColor;
+                        item.Team.Config.PrimaryColor = team.Config.PrimaryColor;
+                        item.Team.Nickname = team.Nickname;
+                        item.Team.ConfName = team.ConfName;
                     }
-
-                    item.Team.Config.PrimaryColor = PrimaryColor;
                 }
 
                 return playersWithProfiles.Take(10).ToList();

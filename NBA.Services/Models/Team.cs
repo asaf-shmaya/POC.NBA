@@ -11,6 +11,11 @@ namespace NBA.Services.Models
     {
         [JsonProperty("teamId")]
         public string TeamId { get; set; }
+        [JsonProperty("nickname")]
+        public string Nickname { get; set; }
+        [JsonProperty("confName")]
+        //public ConfName ConfName { get; set; }
+        public string ConfName { get; set; }
         [JsonProperty("africa")]
         public Africa Africa { get; set; }
         [JsonProperty("config")]
