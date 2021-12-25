@@ -397,7 +397,7 @@ app.methods.RenderDataWithInnerHTML = function RenderDataWithInnerHTML(data) {
                 <span class="v5_10 confName">${player.team.confName}</span>
                 <span class="v5_11 country">${player.africa.country}</span>
                 <span class="v5_12 dateOfBirthUTC">${player.dateOfBirthUTC}</span>
-                <div class="v5_13"></div>
+                <div class="v5_13" style="background: ${player.team.config.primaryColor};"></div>
             </div>
             <div class="v0_126"></div>`;
     });
