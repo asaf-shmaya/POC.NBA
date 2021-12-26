@@ -6,29 +6,18 @@ body {
 }
 .v25_5 {
   width: 429px;
-  /*height: 1029px;*/
-  /*background: url("../images/v25_5.png");*/
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
   opacity: 1;
-  /*position: absolute;*/
-  /*top: 0px;*/
-  /*left: 0px;*/
-  /*overflow: hidden;*/
 }
 .v25_8 {
   width: 429px;
   height: 33px;
-  /*background: url("../images/v25_8.png");*/
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
   opacity: 1;
-  /*position: absolute;*/
-  /*top: 0px;*/
-  /*left: 0px;*/
-  /*overflow: hidden;*/
 }
 .v5_119 {
   width: 429px;
@@ -46,7 +35,6 @@ body {
 .v5_120 {
   width: 388px;
   height: 21px;
-  /*background: url("../images/v5_120.png");*/
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
@@ -89,7 +77,6 @@ body {
 .v5_116 {
   width: 64px;
   height: 21px;
-  /*background: url("../images/v5_116.png");*/
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
@@ -131,7 +118,6 @@ body {
   height: 5px;
   background: rgba(255,255,255,1);
   opacity: 1;
-  /*position: absolute;*/
   top: 33px;
   left: 0px;
   overflow: hidden;
@@ -139,23 +125,18 @@ body {
 .v25_2 {
     width: 429px;
     height: 991px;
-    /*background: url("../images/v25_2.png");*/
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
     opacity: 1;
-    /*position: absolute;*/
     position: relative;
-    /*top: 38px;*/
     left: 0px;
     overflow: hidden;
 }
 .v0_3 {
   width: 429px;
-  /*height: 991px;*/
   background: rgba(255,255,255,1);
   opacity: 1;
-  /*position: absolute;*/
   top: 0px;
   left: 0px;
   overflow: hidden;
@@ -163,12 +144,10 @@ body {
 .v5_3 {
     width: 388px;
     height: 81px;
-    /*background: url("../images/v5_3.png");*/
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
     opacity: 1;
-    /*position: absolute;*/
     position: relative;
     top: 2px;
     left: 21px;
@@ -293,7 +272,6 @@ body {
   height: 1px;
   background: rgba(224,224,224,1);
   opacity: 1;
-  /*position: absolute;*/
   top: 94px;
   left: 0px;
   overflow: hidden;

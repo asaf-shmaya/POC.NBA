@@ -348,19 +348,17 @@ app.methods.GetData = function GetData(year) {
         beforeSend: function (xhr) {
             // Empty content div
             $("#content").empty();
-            /*$("#content").hide();*/
 
             // Show loader
             $(".overlay").show();
         },
         success: function (result, status, xhr) {
             app.data = result;
-            // Populate results
+
             var successMessage = '*** Success! ***';
             console.log(successMessage);
-            //console.log(app.data);
-            //console.log(successMessage);
-            /*$("#content").show();*/
+
+            // Populate results - Render data
             app.methods.RenderDataWithInnerHTML(app.data);
 
             // Hide loader.
@@ -370,13 +368,13 @@ app.methods.GetData = function GetData(year) {
             var errorText = 'Error statusText: ' + xhr.statusText;
             console.log(errorText);
             alert(errorText);
+
             // Hide loader.
             $(".overlay").hide();
         },
         complete: function (xhr, status) {
-            var completeMessage = 'Complete!';
+            var completeMessage = '*** Complete! ***';
             console.log(completeMessage);
-            /*alert(completeMessage);*/
 
             // Hide loader.
             $(".overlay").hide();
@@ -402,14 +400,12 @@ app.methods.RenderDataWithInnerHTML = function RenderDataWithInnerHTML(data) {
             <div class="v0_126"></div>`;
     });
     const html = rows.join();
-    /*console.log(html);*/
     contentDiv.innerHTML = html;
 };
 
 // Passing a named function instead of an anonymous function.
 function readyFn(jQuery) {
     // Code to run when the document is ready.    
-    /*$("#divBtnApply").click(() => { alert("#divBtnApply" + " click!") });*/
     $("#divBtnApply").click(() => {
         if ($("#year").val() == '') {
             return;
